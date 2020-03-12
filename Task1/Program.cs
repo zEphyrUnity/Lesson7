@@ -2,6 +2,11 @@
 using System.Windows.Forms;
 using System.Collections.Generic;
 
+/* Папкин Игорь
+ * а) Добавить в программу «Удвоитель» подсчёт количества отданных команд удвоителю.
+ * б) Добавить меню и команду «Играть». При нажатии появляется сообщение, какое число должен получить игрок. Игрок должен получить это число за минимальное количество ходов.
+ * в) *Добавить кнопку «Отменить», которая отменяет последние ходы. Используйте обобщенный класс Stack. */
+
 namespace WF_Udvoitel
 {
     public partial class Form1 : Form
@@ -12,13 +17,15 @@ namespace WF_Udvoitel
             public int progress;
         }
 
-        private Button btnCommand2;
-        private Button btnReset;
+        
+        
         private Label lblNumber;
         private Label lblCounter;
-        private Button btnCommand1;
-        private MenuStrip menuStrip1;
-        private Button btnRollBack;
+        private Button btnCommand1;               //Копка - +1
+        private Button btnCommand2;               //Копка - x2
+        private Button btnReset;                  //Копка - Сброс счета
+        private MenuStrip menuStrip1;             //Меню
+        private Button btnRollBack;               //Кнопка - Ход назад
 
         public Form1()
         {
@@ -138,10 +145,11 @@ namespace WF_Udvoitel
             Application.Run(form);
         }
 
-        private int counter = 0;
+        private int counter = 0;                              //Счет ходов
         private int score = 0;
         private Stack<Data> playerData = new Stack<Data>();
 
+        //Инкремент +1
         private void btnCommand1_Click_1(object sender, EventArgs e)
         {
             counter++;
@@ -154,6 +162,7 @@ namespace WF_Udvoitel
             lblCounter.Text = (data.progress).ToString();
         }
 
+        //Удвоитель
         private void btnCommand2_Click_1(object sender, EventArgs e)
         {
             counter++;
@@ -166,6 +175,7 @@ namespace WF_Udvoitel
             lblCounter.Text = (data.progress).ToString();
         }
 
+        //Сброс текщего счета
         private void btnReset_Click_1(object sender, EventArgs e)
         {
             counter = 0;
@@ -180,6 +190,7 @@ namespace WF_Udvoitel
             lblCounter.Text = (data.progress).ToString();
         }
 
+        //Ход назад
         private void btnRollBack_Click(object sender, EventArgs e)
         {
             try
@@ -206,6 +217,7 @@ namespace WF_Udvoitel
             }
         }
 
+        //Начать игру, сброс текщего счета
         private void menu_Click_1(object sender, EventArgs e)
         {
             MessageBox.Show("128.000 тысяч вы должны получить за минимальное число ходов");
